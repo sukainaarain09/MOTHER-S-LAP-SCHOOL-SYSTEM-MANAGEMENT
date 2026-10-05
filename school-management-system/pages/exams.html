@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Examination schedule of Mother's Lap School System — term tests, practicals and the annual examination.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Exams | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="exams" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Exams &amp; Results</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Exams &amp; Results</h1>
+              <p class="page-head__lead">
+                Examination calendar for session <span class="js-session">—</span>: unit tests, term
+                examinations, science practicals and the annual examination, with subject weightings.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="Examinations at a glance">
+            <div class="filter-bar__wide" id="page-facts"></div>
+          </div>
+
+          <div id="exams-module"></div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /* Exam module is built in a later step; shared shell is ready. */
+    document.addEventListener('app:ready', function () {
+      var exams = SchoolData.exams;
+      var session = SchoolData.session.label;
+      App.qsa('.js-session').forEach(function (node) { node.textContent = session; });
+      App.renderFacts('#page-facts', [
+        { label: 'Session', value: session },
+        { label: 'Examinations', value: String(exams.length) },
+        { label: 'Completed', value: String(exams.filter(function (exam) { return exam.status === 'Completed'; }).length) },
+        { label: 'Upcoming', value: String(exams.filter(function (exam) { return exam.status === 'Upcoming'; }).length) },
+        { label: 'Next exam', value: exams.filter(function (exam) { return exam.status !== 'Completed'; })[0].name }
+      ]);
+      App.modulePlaceholder('#exams-module', 'Exams & Results',
+        'The examination module (calendar, per-exam subject timetable and a results entry grid) is added in the exams step. '
+        + 'SchoolData.exams already contains six examinations with dates, classes, subjects and weightage.');
+    });
+  </script>
+</body>
+</html>

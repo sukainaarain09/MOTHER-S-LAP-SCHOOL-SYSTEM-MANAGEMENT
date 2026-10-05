@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Mother's Lap School System — school crest.
+  Simple, flat mark: an open book cradled by two hands, inside a rounded
+  navy shield. Fictional school identity for a UI prototype.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img"
+     aria-label="Mother's Lap School System crest">
+  <defs>
+    <linearGradient id="mls-shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b4a86"/>
+      <stop offset="1" stop-color="#0a1c33"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M32 3 57 12v22c0 14-11 24-25 28C18 58 7 48 7 34V12L32 3Z" fill="url(#mls-shield)"/>
+  <path d="M32 3 57 12v22c0 14-11 24-25 28C18 58 7 48 7 34V12L32 3Z" fill="none"
+        stroke="#7cb2e2" stroke-width="1.6" stroke-linejoin="round"/>
+
+  <!-- open book -->
+  <path d="M15 24c5-2 10-2 15 1v18c-5-3-10-3-15-1V24Z" fill="#eef5fc"/>
+  <path d="M49 24c-5-2-10-2-15 1v18c5-3 10-3 15-1V24Z" fill="#d8e8f8"/>
+  <path d="M32 25v18" stroke="#1b4a86" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- cradling hands -->
+  <path d="M11 42c4 6 12 10 21 10s17-4 21-10" fill="none" stroke="#7cb2e2"
+        stroke-width="3" stroke-linecap="round"/>
+
+  <!-- spark / star of learning -->
+  <path d="m32 11 2.1 4.6 4.9.5-3.7 3.2 1.1 4.9L32 21.6l-4.4 2.6 1.1-4.9L25 16.1l4.9-.5L32 11Z"
+        fill="#ffd76a"/>
+</svg>

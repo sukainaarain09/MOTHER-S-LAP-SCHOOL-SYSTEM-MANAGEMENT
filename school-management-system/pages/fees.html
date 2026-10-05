@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fee management of Mother's Lap School System — class-wise fee structure in PKR, collection status and outstanding balances.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Fees | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="fees" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Fees</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Fees</h1>
+              <p class="page-head__lead">
+                Fee structure per class in PKR (tuition, admission, registration, security, library,
+                lab and transport), collection progress for the session and outstanding balances.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="Fee position at a glance">
+            <div class="filter-bar__wide" id="page-facts"></div>
+          </div>
+
+          <div id="fees-module"></div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /* Fee module is built in a later step; shared shell is ready. */
+    document.addEventListener('app:ready', function () {
+      var fees = SchoolData.getFeeSummary();
+      App.renderFacts('#page-facts', [
+        { label: 'Collected', value: SchoolData.helpers.formatPKR(fees.collected) },
+        { label: 'Outstanding', value: SchoolData.helpers.formatPKR(fees.outstanding) },
+        { label: 'Collection', value: fees.percent + '%' },
+        { label: 'Paid in full', value: String(fees.byStatus.Paid) + ' students' },
+        { label: 'Overdue', value: String(fees.byStatus.Overdue) + ' students' },
+        { label: 'Months billed', value: fees.monthsElapsed + ' of ' + fees.totalMonths }
+      ]);
+      App.modulePlaceholder('#fees-module', 'Fees',
+        'The fees module (class-wise structure table, paginated student ledger, bulk mark-as-paid and a printable statement) is added in the fees step. '
+        + 'SchoolData.getFeeSummary() and SchoolData.getStudentsByClass() already provide the ledger figures.');
+    });
+  </script>
+</body>
+</html>

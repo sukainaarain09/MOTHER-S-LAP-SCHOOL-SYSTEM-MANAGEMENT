@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Mother's Lap School System — building illustration used on the dashboard
+  welcome panel. Decorative only; hidden from assistive technology.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180"
+     aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef5fc"/>
+      <stop offset="1" stop-color="#d8e8f8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="320" height="180" rx="14" fill="url(#sky)"/>
+  <circle cx="262" cy="42" r="18" fill="#ffd76a" opacity=".85"/>
+
+  <!-- main block -->
+  <rect x="52" y="62" width="150" height="84" rx="8" fill="#14396b"/>
+  <rect x="52" y="62" width="150" height="12" rx="6" fill="#1b4a86"/>
+  <!-- side block -->
+  <rect x="202" y="88" width="66" height="58" rx="8" fill="#1b4a86"/>
+  <!-- windows -->
+  <g fill="#d8e8f8">
+    <rect x="68" y="86" width="18" height="16" rx="3"/>
+    <rect x="98" y="86" width="18" height="16" rx="3"/>
+    <rect x="128" y="86" width="18" height="16" rx="3"/>
+    <rect x="158" y="86" width="18" height="16" rx="3"/>
+    <rect x="68" y="112" width="18" height="16" rx="3"/>
+    <rect x="98" y="112" width="18" height="16" rx="3"/>
+    <rect x="128" y="112" width="18" height="16" rx="3"/>
+    <rect x="158" y="112" width="18" height="16" rx="3"/>
+    <rect x="212" y="100" width="14" height="14" rx="3"/>
+    <rect x="240" y="100" width="14" height="14" rx="3"/>
+    <rect x="212" y="122" width="14" height="14" rx="3"/>
+    <rect x="240" y="122" width="14" height="14" rx="3"/>
+  </g>
+  <!-- door -->
+  <rect x="114" y="126" width="26" height="20" rx="3" fill="#ffd76a"/>
+  <!-- flag pole -->
+  <path d="M90 62V34" stroke="#0a1c33" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M90 36h22l-6 7 6 7H90V36Z" fill="#157347"/>
+  <!-- ground -->
+  <rect x="0" y="146" width="320" height="34" fill="#2f7cc4" opacity=".18"/>
+  <g fill="#157347" opacity=".85">
+    <circle cx="30" cy="140" r="10"/>
+    <circle cx="288" cy="142" r="12"/>
+  </g>
+  <rect x="26" y="146" width="7" height="16" fill="#7a4a21"/>
+  <rect x="285" y="146" width="7" height="16" fill="#7a4a21"/>
+</svg>

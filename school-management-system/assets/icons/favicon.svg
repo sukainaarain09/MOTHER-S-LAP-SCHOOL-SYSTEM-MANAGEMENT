@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mother's Lap School System — favicon (compact crest mark). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#14396b"/>
+  <path d="M6 12c2.6-1 5.2-1 7.8.5V23c-2.6-1.5-5.2-1.5-7.8-.5V12Z" fill="#eef5fc"/>
+  <path d="M26 12c-2.6-1-5.2-1-7.8.5V23c2.6-1.5 5.2-1.5 7.8-.5V12Z" fill="#d8e8f8"/>
+  <path d="M16 12.5V23" stroke="#1b4a86" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M5 24.5c3 3.6 6.7 5.5 11 5.5s8-1.9 11-5.5" fill="none" stroke="#7cb2e2"
+        stroke-width="2" stroke-linecap="round"/>
+  <path d="m16 5 1.3 2.9 3.1.3-2.3 2 0.7 3.1-2.8-1.7-2.8 1.7 0.7-3.1-2.3-2 3.1-.3L16 5Z"
+        fill="#ffd76a"/>
+</svg>

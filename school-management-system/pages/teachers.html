@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Teaching staff directory of Mother's Lap School System — 50 teachers, subjects and class assignments.">
+  <meta name="author" content="Mother's Lap School System">
+  <title>Teachers | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="teachers" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Teachers</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Teachers</h1>
+              <p class="page-head__lead">
+                Staff directory of Mother's Lap School System with main subject, qualification,
+                class assignments and class-teacher duties. Demo records only.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="Staff at a glance">
+            <div class="filter-bar__wide" id="page-facts"></div>
+          </div>
+
+          <div id="teachers-module"></div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /* Teacher directory module is built in a later step; shared shell is ready. */
+    document.addEventListener('app:ready', function () {
+      var totals = SchoolData.totals;
+      App.renderFacts('#page-facts', [
+        { label: 'Teachers', value: String(totals.teachers) },
+        { label: 'Subjects', value: String(totals.subjects) },
+        { label: 'Classes', value: String(totals.classes) },
+        { label: 'Sections', value: String(totals.sections) },
+        { label: 'Class teachers', value: String(totals.sections) + ' (one per section)' }
+      ]);
+      /* Arriving from the topbar search (pages/teachers.html?search=Armeena
+         Jamali). The directory itself is not built yet, so acknowledge the
+         query and show the records that already match rather than dropping
+         the user on a page that silently ignores it. */
+      var query = App.queryParam('search');
+      if (!query) return;
+      var hits = App.globalSearch(query).results.filter(function (r) {
+        return r.kind === 'teacher';
+      });
+      var mount = App.qs('#teachers-module');
+      mount.insertBefore(
+        App.el('div', { class: 'alert alert--info', role: 'status' }, [
+          App.iconNode('info'),
+          App.el('div', {}, [
+            App.el('strong', { text: hits.length + ' teacher' + (hits.length === 1 ? '' : 's')
+              + ' matching " ' + query + '"' ),
+            App.el('p', {
+              text: hits.length
+                ? hits.map(function (r) { return r.name; }).join(', ')
+                : 'No teacher in the demo staff list matches that name.'
+            })
+          ])
+        ]),
+        mount.firstChild
+      );
+    });
+  </script>
+</body>
+</html>

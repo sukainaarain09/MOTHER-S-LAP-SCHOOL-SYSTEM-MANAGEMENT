@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="School notices of Mother's Lap School System — events, fee deadlines, examinations and academic updates.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Announcements | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="announcements" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Announcements</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Announcements</h1>
+              <p class="page-head__lead">
+                Notice board of Mother's Lap School System — events, fee deadlines, examination
+                schedules, co-curricular activities and staff notices.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="Notices at a glance">
+            <div class="filter-bar__wide" id="page-facts"></div>
+          </div>
+
+          <div id="announcements-module"></div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /* Notice board module is built in a later step; shared shell is ready. */
+    document.addEventListener('app:ready', function () {
+      var notices = SchoolData.announcements;
+      App.renderFacts('#page-facts', [
+        { label: 'Notices', value: String(notices.length) },
+        { label: 'Pinned', value: String(notices.filter(function (item) { return item.pinned; }).length) },
+        { label: 'Urgent', value: String(notices.filter(function (item) { return item.priority === 'Urgent'; }).length) },
+        { label: 'Audiences', value: String(new Set(notices.map(function (item) { return item.audience; })).size) },
+        { label: 'Latest', value: SchoolData.helpers.formatDate(notices[0].publishedDate, 'medium') }
+      ]);
+      App.modulePlaceholder('#announcements-module', 'Announcements',
+        'The notice board (audience filters, pinned notices first and a compose form) is added in the announcements step. '
+        + 'SchoolData.announcements already holds ten notices with priority, audience, author and published date.');
+    });
+  </script>
+</body>
+</html>

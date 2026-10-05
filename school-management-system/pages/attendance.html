@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Daily attendance register of Mother's Lap School System — mark present, absent, leave or late for a class section.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Attendance | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="attendance" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Attendance</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Attendance</h1>
+              <p class="page-head__lead">
+                Class-teacher register for Mother's Lap School System. Pick a class, section and date,
+                then mark every student. Each section holds 30–40 students, so only one register is
+                rendered at a time.
+              </p>
+            </div>
+            <div class="flex gap-1">
+              <button class="btn btn--ghost" type="button" id="btn-print">Print register</button>
+            </div>
+          </div>
+
+          <!-- Register controls -->
+          <section class="card mb-2" aria-labelledby="register-controls-heading">
+            <div class="card__header">
+              <h2 class="card__title" id="register-controls-heading">Register controls</h2>
+              <span class="badge badge--info" id="class-teacher-badge"></span>
+            </div>
+            <div class="card__body">
+              <div class="form-grid form-grid--3" id="register-controls"></div>
+            </div>
+          </section>
+
+          <!-- Summary -->
+          <section aria-labelledby="attendance-summary-heading">
+            <h2 class="sr-only" id="attendance-summary-heading">Attendance summary</h2>
+            <div class="stat-grid" id="attendance-summary"></div>
+          </section>
+
+          <!-- Register -->
+          <div class="dashboard-split dashboard-split--even mt-2">
+            <section class="card" aria-labelledby="register-heading">
+              <div class="card__header">
+                <div>
+                  <h2 class="card__title" id="register-heading">Daily register</h2>
+                  <p class="card__subtitle" id="register-caption"></p>
+                </div>
+                <div class="flex gap-1">
+                  <button class="btn btn--ghost btn--sm" type="button" id="btn-all-present">All present</button>
+                  <button class="btn btn--primary btn--sm" type="button" id="btn-save">Save</button>
+                </div>
+              </div>
+              <div class="table-scroll" id="register-table" tabindex="0" role="region"
+                   aria-label="Daily attendance register — scrollable table"></div>
+              <div class="card__footer" id="register-footer"></div>
+            </section>
+
+            <section class="card" aria-labelledby="month-heading">
+              <div class="card__header">
+                <div>
+                  <h2 class="card__title" id="month-heading">Month to date</h2>
+                  <p class="card__subtitle" id="month-caption"></p>
+                </div>
+              </div>
+              <div class="table-scroll" id="month-table" tabindex="0" role="region"
+                   aria-label="Month-to-date attendance — scrollable table"></div>
+            </section>
+          </div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/attendance.js"></script>
+</body>
+</html>

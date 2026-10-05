@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mother's Lap School System — dashboard for students, teachers, attendance, fees and results. Demo data only.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Dashboard | Mother's Lap School System</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="dashboard" data-base="">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <!-- Sidebar and topbar are injected by js/app.js so every page stays identical -->
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <!-- Welcome banner. The heading text is static so the brand name is in
+               the HTML, not assembled in JavaScript; js/dashboard.js fills in
+               the eyebrow, the lead and the fact chips. -->
+          <section class="banner" aria-labelledby="banner-title">
+            <div class="banner__inner">
+              <span class="banner__mark" aria-hidden="true" id="banner-mark"></span>
+              <div class="banner__text">
+                <p class="banner__eyebrow" id="banner-eyebrow">Academic session overview</p>
+                <h1 class="banner__title" id="banner-title">Welcome to Mother's Lap School System</h1>
+                <p class="banner__lead" id="banner-lead">
+                  Playgroup to Grade 10 school in Hyderabad, Sindh.
+                </p>
+                <div class="banner__facts" id="banner-facts"></div>
+              </div>
+              <div class="banner__actions">
+                <a class="btn btn--primary btn--sm" href="pages/attendance.html">Take attendance</a>
+                <a class="btn btn--secondary btn--sm" href="pages/students.html">Student register</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Headline figures. Every number is derived in js/dashboard.js from
+               window.SchoolData; nothing here is typed in. -->
+          <section class="mt-2" aria-labelledby="kpi-heading">
+            <h2 class="sr-only" id="kpi-heading">Key figures</h2>
+            <div class="kpi-grid" id="kpi-grid"></div>
+          </section>
+
+          <div class="dashboard-split mt-2">
+            <div class="stack">
+              <!-- Students per class -->
+              <section class="card" aria-labelledby="strength-heading">
+                <div class="card__header">
+                  <div>
+                    <h2 class="card__title" id="strength-heading">Students per class</h2>
+                    <p class="card__subtitle" id="strength-caption">Class strength across the session</p>
+                  </div>
+                  <a class="btn btn--quiet btn--sm" href="pages/classes.html">View classes</a>
+                </div>
+                <div class="card__body" id="strength-chart"></div>
+              </section>
+
+              <!-- 7-day attendance trend -->
+              <section class="card" aria-labelledby="trend-heading">
+                <div class="card__header">
+                  <div>
+                    <h2 class="card__title" id="trend-heading">Attendance, last 7 school days</h2>
+                    <p class="card__subtitle" id="trend-caption">Whole-school present plus late, as a share of the roll</p>
+                  </div>
+                  <a class="btn btn--quiet btn--sm" href="pages/attendance.html">Open register</a>
+                </div>
+                <div class="card__body" id="trend-panel"></div>
+              </section>
+
+              <!-- Recent activities -->
+              <section class="card" aria-labelledby="activity-heading">
+                <div class="card__header">
+                  <div>
+                    <h2 class="card__title" id="activity-heading">Recent activities</h2>
+                    <p class="card__subtitle" id="activity-caption">Newest first, from the demo records</p>
+                  </div>
+                </div>
+                <div class="card__body" id="activity-panel"></div>
+              </section>
+            </div>
+
+            <aside class="stack" aria-label="School highlights">
+              <!-- Fee overview: paid vs pending this month -->
+              <section class="card card--accent" aria-labelledby="fees-heading">
+                <div class="card__header">
+                  <div>
+                    <h2 class="card__title" id="fees-heading">Fee overview</h2>
+                    <p class="card__subtitle" id="fee-caption">Collected this month against the bill</p>
+                  </div>
+                  <span class="badge badge--info" id="fee-session-badge"></span>
+                </div>
+                <div class="card__body" id="fee-panel"></div>
+                <div class="card__footer">
+                  <a href="pages/fees.html">Open fees module</a>
+                </div>
+              </section>
+
+              <!-- Gender distribution -->
+              <section class="card" aria-labelledby="gender-heading">
+                <div class="card__header">
+                  <div>
+                    <h2 class="card__title" id="gender-heading">Gender distribution</h2>
+                    <p class="card__subtitle" id="gender-caption">Boys and girls on the roll</p>
+                  </div>
+                </div>
+                <div class="card__body" id="gender-panel"></div>
+              </section>
+
+              <!-- Latest announcements -->
+              <section class="card" aria-labelledby="announcements-heading">
+                <div class="card__header">
+                  <h2 class="card__title" id="announcements-heading">Latest announcements</h2>
+                  <a class="btn btn--quiet btn--sm" href="pages/announcements.html">View all</a>
+                </div>
+                <div class="card__body card__body--tight" id="announcements-list"></div>
+              </section>
+
+              <!-- Upcoming exams -->
+              <section class="card" aria-labelledby="exams-heading">
+                <div class="card__header">
+                  <div>
+                    <h2 class="card__title" id="exams-heading">Upcoming exams</h2>
+                    <p class="card__subtitle" id="exams-caption">Subject, class, date and time</p>
+                  </div>
+                  <a class="btn btn--quiet btn--sm" href="pages/exams.html">Details</a>
+                </div>
+                <div class="card__body card__body--tight" id="exams-list"></div>
+              </section>
+            </aside>
+          </div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

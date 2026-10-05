@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Assignment board of Mother's Lap School System — homework issued by teachers with due dates and submission status.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Assignments | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="assignments" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Assignments</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Assignments</h1>
+              <p class="page-head__lead">
+                Homework issued by class teachers: subject, class-section, assigned date, due date
+                and submission progress for the current session.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="Assignment board at a glance">
+            <div class="filter-bar__wide" id="page-facts"></div>
+          </div>
+
+          <div id="assignments-module"></div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /* Assignment board module is built in a later step; shared shell is ready. */
+    document.addEventListener('app:ready', function () {
+      var items = SchoolData.assignments;
+      var pending = items.filter(function (item) { return item.status !== 'Graded'; }).length;
+      App.renderFacts('#page-facts', [
+        { label: 'Assignments', value: String(items.length) },
+        { label: 'Awaiting grading', value: String(pending) },
+        { label: 'Subjects covered', value: String(new Set(items.map(function (item) { return item.subject; })).size) },
+        { label: 'Sections', value: String(new Set(items.map(function (item) { return item.sectionId; })).size) },
+        { label: 'Students reached', value: SchoolData.totals.students.toLocaleString('en-US') }
+      ]);
+      App.modulePlaceholder('#assignments-module', 'Assignments',
+        'The assignment board (filter by class, section and subject, plus a create-assignment form) is added in the assignments step. '
+        + 'SchoolData.assignments already holds seeded records and SchoolData.helpers.getAssignments(class, section, subject) filters them.');
+    });
+  </script>
+</body>
+</html>

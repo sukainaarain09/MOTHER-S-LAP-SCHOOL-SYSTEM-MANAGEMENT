@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Class and section structure of Mother's Lap School System — Playgroup to Grade 10, subjects, class teachers and fees.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Classes | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="classes" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Classes</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Classes</h1>
+              <p class="page-head__lead">
+                Thirteen classes from Playgroup to Grade 10, each with sections A to D.
+                Physics, Chemistry, Biology and Pakistan Studies are taught from Grade 6 onwards only.
+              </p>
+            </div>
+          </div>
+
+          <div class="filter-bar" aria-label="Structure at a glance">
+            <div class="filter-bar__wide" id="page-facts"></div>
+          </div>
+
+          <div id="classes-module"></div>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    /* Class browser module is built in a later step; shared shell is ready. */
+    document.addEventListener('app:ready', function () {
+      var summary = SchoolData.getClassSummary();
+      var first = summary[0];
+      var last = summary[summary.length - 1];
+      App.renderFacts('#page-facts', [
+        { label: 'Classes', value: String(summary.length) },
+        { label: 'Sections', value: summary.reduce(function (total, row) { return total + row.sectionCount; }, 0) },
+        { label: 'Students', value: SchoolData.totals.students.toLocaleString('en-US') },
+        { label: 'Subjects (Playgroup)', value: String(first.subjectCount) },
+        { label: 'Subjects (Grade 10)', value: String(last.subjectCount) },
+        { label: 'Fee range', value: SchoolData.helpers.formatPKR(first.monthlyFee) + ' - ' + SchoolData.helpers.formatPKR(last.monthlyFee) + ' / month' }
+      ]);
+      App.modulePlaceholder('#classes-module', 'Classes',
+        'The class browser (per-class cards with sections, subjects, class teachers, fee structure and strength) is added in the classes step. '
+        + 'SchoolData.getClassSummary() already returns one roll-up row per class with sections, subjects, teachers and fees.');
+    });
+  </script>
+</body>
+</html>

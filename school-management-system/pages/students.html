@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Student register of Mother's Lap School System — 2,000 demo records with search, filters and pagination.">
+  <meta name="author" content="Mother's Lap School System">
+  <meta name="theme-color" content="#14396b">
+  <title>Students | Mother's Lap School System</title>
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- Inter (modern UI typeface) with a system-font fallback in css/style.css.
+     font-display=swap means text renders immediately in the fallback
+     if Google Fonts is slow, blocked, or the prototype runs offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body data-page="students" data-base="../">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="app">
+    <div class="shell">
+      <div class="app__main">
+        <div id="topbar-mount"></div>
+
+        <main class="content" id="main-content" tabindex="-1">
+          <div class="page-head">
+            <div>
+              <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="../index.html">Home</a></li>
+                  <li aria-hidden="true">/</li>
+                  <li><span aria-current="page">Students</span></li>
+                </ol>
+              </nav>
+              <h1 class="page-head__title">Students</h1>
+              <p class="page-head__lead">
+                Complete register of Mother's Lap School System — 13 classes, 4 sections each.
+                Records are fictional demo data. Use the search and filters to narrow the list;
+                rows are paginated so the browser stays fast.
+              </p>
+            </div>
+            <div class="flex gap-1">
+              <button class="btn btn--ghost" type="button" id="btn-reset">
+                Reset filters
+              </button>
+              <button class="btn btn--primary" type="button" id="btn-add-student">
+                Add student
+              </button>
+            </div>
+          </div>
+
+          <section aria-labelledby="students-summary-heading">
+            <h2 class="sr-only" id="students-summary-heading">Register summary</h2>
+            <div class="stat-grid" id="students-summary"></div>
+          </section>
+
+          <div class="mt-2" id="students-table"></div>
+
+          <p class="text-xs text-muted mt-1">
+            Tip: press Enter on a highlighted row to open the full student profile.
+          </p>
+        </main>
+
+        <div id="footer-mount"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/students.js"></script>
+</body>
+</html>
